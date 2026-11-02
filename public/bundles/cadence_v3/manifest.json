@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "bundle_id": "cadence_v3",
+  "created_at": "2026-11-02T06:34:44+00:00",
+  "nominal_year": 2002,
+  "timesteps_per_hour": 4,
+  "action_repeat": 4,
+  "operating_hours": [
+    8,
+    18
+  ],
+  "workdays_eplus": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "comfort": {
+    "winter": [
+      20.0,
+      23.5
+    ],
+    "summer": [
+      23.0,
+      26.0
+    ],
+    "summer_start": [
+      6,
+      1
+    ],
+    "summer_end": [
+      9,
+      30
+    ]
+  },
+  "reward": {
+    "energy_weight": 0.5,
+    "lambda_energy": 0.0001,
+    "lambda_temperature": 1.0,
+    "off_hours_comfort_weight": 0.1
+  },
+  "actions": [
+    {
+      "id": 0,
+      "heating": 12.0,
+      "cooling": 30.0
+    },
+    {
+      "id": 1,
+      "heating": 13.0,
+      "cooling": 29.0
+    },
+    {
+      "id": 2,
+      "heating": 14.0,
+      "cooling": 28.0
+    },
+    {
+      "id": 3,
+      "heating": 15.0,
+      "cooling": 27.0
+    },
+    {
+      "id": 4,
+      "heating": 16.0,
+      "cooling": 26.0
+    },
+    {
+      "id": 5,
+      "heating": 17.0,
+      "cooling": 25.0
+    },
+    {
+      "id": 6,
+      "heating": 18.0,
+      "cooling": 24.0
+    },
+    {
+      "id": 7,
+      "heating": 19.0,
+      "cooling": 23.25
+    },
+    {
+      "id": 8,
+      "heating": 20.0,
+      "cooling": 23.25
+    },
+    {
+      "id": 9,
+      "heating": 21.0,
+      "cooling": 23.25
+    }
+  ],
+  "train_climate": "mixed",
+  "climates": [
+    {
+      "key": "hot",
+      "label": "Hot",
+      "env_id": "Eplus-5zone-hot-discrete-v1"
+    },
+    {
+      "key": "mixed",
+      "label": "Mixed",
+      "env_id": "Eplus-5zone-mixed-discrete-v1"
+    },
+    {
+      "key": "cool",
+      "label": "Cool",
+      "env_id": "Eplus-5zone-cool-discrete-v1"
+    }
+  ],
+  "policies": [
+    {
+      "key": "dqn",
+      "name": "DQN",
+      "kind": "agent",
+      "score_type": "q_value",
+      "color": "#2a78d6"
+    },
+    {
+      "key": "ddqn",
+      "name": "DDQN",
+      "kind": "agent",
+      "score_type": "q_value",
+      "color": "#7b4fd6"
+    },
+    {
+      "key": "ppo",
+      "name": "PPO",
+      "kind": "agent",
+      "score_type": "probability",
+      "color": "#eb6834"
+    },
+    {
+      "key": "rule_based",
+      "name": "Rule-based",
+      "kind": "baseline",
+      "score_type": null,
+      "color": "#1baf7a"
+    },
+    {
+      "key": "fixed_setpoint",
+      "name": "Fixed setpoint",
+      "kind": "baseline",
+      "score_type": null,
+      "color": "#eda100"
+    },
+    {
+      "key": "random",
+      "name": "Random",
+      "kind": "baseline",
+      "score_type": null,
+      "color": "#e87ba4"
+    }
+  ],
+  "algorithms": {
+    "dqn": {
+      "config": {
+        "n_envs": 1,
+        "learning_rate": 0.0001,
+        "buffer_size": 300000,
+        "learning_starts": 5000,
+        "batch_size": 256,
+        "gamma": 0.97,
+        "train_freq": 1,
+        "gradient_steps": 1,
+        "target_update_interval": 2500,
+        "exploration_fraction": 0.25,
+        "exploration_initial_eps": 1.0,
+        "exploration_final_eps": 0.02,
+        "max_grad_norm": 10.0,
+        "features_dim": 256,
+        "hidden_dim": 256,
+        "head_arch": [
+          128
+        ],
+        "normalize_reward": false,
+        "n_train_episodes": 30
+      },
+      "train_time_sec": 2260.2453248500824,
+      "timesteps": 262800
+    },
+    "ddqn": {
+      "config": {
+        "n_envs": 1,
+        "learning_rate": 0.0001,
+        "buffer_size": 300000,
+        "learning_starts": 5000,
+        "batch_size": 256,
+        "gamma": 0.97,
+        "train_freq": 1,
+        "gradient_steps": 1,
+        "target_update_interval": 2500,
+        "exploration_fraction": 0.25,
+        "exploration_initial_eps": 1.0,
+        "exploration_final_eps": 0.02,
+        "max_grad_norm": 10.0,
+        "features_dim": 256,
+        "hidden_dim": 256,
+        "head_arch": [
+          128
+        ],
+        "normalize_reward": false,
+        "n_train_episodes": 30
+      },
+      "train_time_sec": 2440.5952246189117,
+      "timesteps": 262800
+    },
+    "ppo": {
+      "config": {
+        "n_envs": 1,
+        "n_steps": 2048,
+        "batch_size": 256,
+        "n_epochs": 10,
+        "learning_rate": 0.0003,
+        "clip_range": 0.2,
+        "gamma": 0.97,
+        "gae_lambda": 0.95,
+        "ent_coef": 0.01,
+        "vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "features_dim": 256,
+        "hidden_dim": 256,
+        "head_arch": [
+          128
+        ],
+        "normalize_reward": true,
+        "n_train_episodes": 30
+      },
+      "train_time_sec": 1042.3735282421112,
+      "timesteps": 262800
+    }
+  },
+  "feature_names": [
+    "doy_sin",
+    "doy_cos",
+    "hour_sin",
+    "hour_cos",
+    "is_operating",
+    "is_workday",
+    "hours_until_open",
+    "comfort_low",
+    "comfort_up",
+    "temp_below",
+    "temp_above",
+    "outdoor_temperature",
+    "outdoor_humidity",
+    "wind_speed",
+    "wind_dir_sin",
+    "wind_dir_cos",
+    "diffuse_solar_radiation",
+    "direct_solar_radiation",
+    "air_temperature",
+    "air_temperature_delta",
+    "air_humidity",
+    "occupancy",
+    "heating_setpoint",
+    "cooling_setpoint",
+    "co2_emission",
+    "hvac_power",
+    "hvac_energy"
+  ],
+  "metric_labels": {
+    "mean_reward": "Mean reward",
+    "mean_power_W": "Mean power demand (W)",
+    "hvac_energy_kWh": "HVAC energy (kWh)",
+    "comfort_violation_op_pct": "Comfort violation, operational (%)",
+    "unoccupied_excursion_pct": "Unoccupied excursion (%)",
+    "mean_violation_op_C": "Mean violation, operational (\u00b0C)",
+    "occupied_violation_pct": "Occupied comfort violation (%)",
+    "energy_saving_vs_fixed_pct": "Energy saving vs fixed setpoint (%)"
+  }
+}
