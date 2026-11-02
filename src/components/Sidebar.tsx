@@ -1,4 +1,5 @@
 import type { Manifest } from '../bundle/manifest';
+import { APP_CONFIG } from '../config';
 import { controllerPolicies } from '../domain/policies';
 import { resolveSelection } from '../state/appState';
 import { useAppState } from '../state/AppStateContext';
@@ -34,7 +35,7 @@ export function Sidebar() {
         )}
         {manifest !== null && <SelectionControls manifest={manifest} />}
       </div>
-      <ThemeToggle />
+      {APP_CONFIG.showThemeToggle && <ThemeToggle />}
       {manifest !== null && multipleBundles && <BundleInfo manifest={manifest} />}
     </aside>
   );
