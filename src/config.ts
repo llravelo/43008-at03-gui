@@ -14,6 +14,7 @@ export const APP_CONFIG = {
   playbackSpeedsHours: [1, 6, 24],
   chartWindowsHours: [24, 7 * 24, 30 * 24],
   eventLogLength: 12,
-  /** Hidden for now: the colour scheme then follows the viewer's system setting (or a choice saved earlier). */
+  /** Hidden for now; while hidden, every viewer gets `fixedColorScheme` regardless of system setting. */
   showThemeToggle: false,
+  fixedColorScheme: 'dark',
 } as const;

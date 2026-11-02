@@ -27,7 +27,7 @@ const initialState: AppState = {
 };
 
 // Applied before the first render so a dark-mode viewer never sees a light flash.
-const colorScheme = initialColorScheme();
+const colorScheme = APP_CONFIG.showThemeToggle ? initialColorScheme() : APP_CONFIG.fixedColorScheme;
 applyColorScheme(colorScheme);
 
 const root = document.getElementById('root');
